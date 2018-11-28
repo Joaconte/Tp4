@@ -35,7 +35,9 @@ void Abb::agregarElemento(Nodo* aeropuerto, Nodo* actual){
 
 void Abb::inOrder(Nodo* actual){
 
-    if (actual==0)
+    if (actual==0){
+
+    }
     else{
         inOrder(actual->obtenerIzquierdo());
         cout << actual->obtenerClave() << endl;
