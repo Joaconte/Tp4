@@ -55,12 +55,14 @@ void lecturaArchivo(){
 
     }
     archivo.close();
+    Arbol.eliminarElemento("AMS");
     Arbol.inOrder(Arbol.obtenerRaiz());
 }
 
+/*
 
 
-/* void menu(){
+void menu(){
 
     char i = '1';
     while (i != '0'){
@@ -81,7 +83,7 @@ void opciones(char i){
     switch (i){
         case '0':
             break;
-        case '1': menuConsulta();
+        case '1': //menuConsulta();
             break;
         case '2': darDeAlta();
             break;
@@ -91,6 +93,45 @@ void opciones(char i){
         }
         cout<< endl;
     }
+
+    void darDeAlta(){
+        string datoString, clave;
+        float datoFloat;
+        Nodo *ptrNodo;
+        aeropuerto *ptrAeropuerto;
+        ptrAeropuerto= new aeropuerto();
+        cout << "Ingrese el codigo IATA: ";
+        cin >> clave;
+        cout <<"Ingrese el nombre del aeropuerto: ";
+        cin >> datoString;
+        ptrAeropuerto->nombre = datoString;
+        cout <<"Ingrese el nombre de la ciudad: ";
+        cin >> datoString;
+        ptrAeropuerto->ciudad = datoString;
+        cout <<"Ingrese el del pais: ";
+        cin >> datoString;
+        ptrAeropuerto->pais = datoString;
+        cout <<"Ingrese la superficie: ";
+        cin >> datoFloat;
+        ptrAeropuerto->superficie = datoFloat;
+        cout <<"Ingrese la cantidad de terminales: ";
+        cin >> datoInt;
+        ptrAeropuerto->cantidadTerminales = datoInt;
+        cout <<"Ingrese la cantidad de destinos nacionales: ";
+        cin >>  datoInt;
+        ptrAeropuerto->destinosNacionales = datoInt;
+        cout <<"Ingrese la cantidad de destinos internacionale: ";
+        cin >> datoInt;
+        ptrAeropuerto->destinosInternacionales = datoInt;
+        ptrNodo= new Nodo(clave, ptrAeropuerto);
+        Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
+    }
+
+    void darDeBaja(){
+        Arbol.
+    }
+
+
 
     void menuConsulta(){
 

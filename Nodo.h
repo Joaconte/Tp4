@@ -12,7 +12,6 @@ struct aeropuerto{
     int cantidadTerminales;
     int destinosNacionales;
     int destinosInternacionales;
-
 };
 
 class Nodo {
@@ -50,10 +49,16 @@ class Nodo {
         // post: asigna ese puntero como izquierdo
         void asignarIzquierdo(Nodo* punteroNodo);
 
-
         //pre: recibe un puntero a nodo
         // post: asigna ese puntero como derecho
         void asignarDerecho(Nodo* punteroNodo);
+
+
+        void asignarIzquierdo();
+        void asignarDerecho();
+        void asignarClave(Tipo clave);
+        void asignarDatos(aeropuerto* datos);
+        bool esHoja();
 
         //destructor
         ~Nodo();

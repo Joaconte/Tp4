@@ -36,6 +36,61 @@ void Abb::agregarElemento(Nodo* aeropuerto, Nodo* actual){
     }
 }
 
+
+void Abb::eliminarElemento(Tipo clave){
+
+    Nodo* padre= 0, *nodo, *actual;
+    Tipo aux;
+    aeropuerto* ptrAux;
+    actual=raiz;
+
+    while(!(actual==0)){
+        if(clave==actual->obtenerClave()){
+            if (actual->esHoja()){
+                if(padre){
+                    if(padre->obtenerDerecho()==actual)
+                        padre->asignarDerecho();
+                    else if(padre->obtenerIzquierdo()==actual)
+                        padre->asignarIzquierdo();
+                }
+                delete actual;
+                actual=0;
+            }
+            else{
+                padre=actual;
+                if (actual->obtenerDerecho()){
+                    nodo=actual->obtenerDerecho();
+                    while(nodo->obtenerIzquierdo()){
+                        padre=nodo;
+                        nodo=nodo->obtenerIzquierdo();
+                    }
+                }
+                else{
+                    nodo=actual->obtenerIzquierdo();
+                    while(nodo->obtenerDerecho()){
+                        padre=nodo;
+                        nodo=nodo->obtenerDerecho();
+                    }
+                }
+                aux=actual->obtenerClave();
+                ptrAux=actual->obtenerDatos();
+                actual->asignarClave(nodo->obtenerClave());
+                actual->asignarDatos(nodo->obtenerDatos());
+                nodo->asignarClave(clave);
+                nodo->asignarDatos(ptrAux);
+                actual=nodo;
+            }
+        }
+        else{
+            padre=actual;
+            if(clave >actual->obtenerClave())
+                actual = actual->obtenerDerecho();
+            else
+                actual = actual->obtenerIzquierdo();
+        }
+    }
+}
+
 void Abb::inOrder(Nodo* actual){
 
     if (actual!=0){

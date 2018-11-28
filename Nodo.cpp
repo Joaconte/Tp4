@@ -32,6 +32,25 @@ void Nodo::asignarDerecho( Nodo* punteroNodo) {
 	derecho = punteroNodo;
 }
 
+void Nodo::asignarIzquierdo(){
+    izquierdo=0;
+}
+
+void Nodo::asignarDerecho(){
+    derecho=0;
+}
+
+void Nodo::asignarClave(Tipo clave){
+    this->clave=clave;
+}
+
+void Nodo::asignarDatos(aeropuerto* datos){
+    this->datos=datos;
+}
+
+bool Nodo:: esHoja(){
+    return (derecho==0 && izquierdo==0);
+}
 
 Nodo::~Nodo(){
     delete datos;

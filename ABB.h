@@ -26,7 +26,9 @@ class Abb{
 
         //pre: recibe un nuevo aeropuerto y el nodo actual
         //post: agrega el aeropuerto en la posicion correspondiente
-        void agregarElemento(Nodo*aeropuerto, Nodo* actual);
+        void agregarElemento(Nodo* aeropuerto, Nodo* actual);
+
+        void eliminarElemento(Tipo clave);
 
         //pre: recibe el nodo actual
         //post: recorre el arbol de manera inOrder
