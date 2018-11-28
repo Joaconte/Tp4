@@ -18,10 +18,8 @@ Nodo* Abb::obtenerRaiz() {
 
 void Abb::agregarElemento(Nodo* aeropuerto, Nodo* actual){
 
-    if (actual!=0)
-        cout << actual->obtenerClave() << endl;
-    if (raiz==0)
-        raiz=aeropuerto;
+    if (actual==0)
+        actual=aeropuerto;
     else if (actual==0){
         actual= aeropuerto;
         }
@@ -38,7 +36,6 @@ void Abb::agregarElemento(Nodo* aeropuerto, Nodo* actual){
 void Abb::inOrder(Nodo* actual){
 
     if (actual==0)
-        cout <<"X"<<endl;
     else{
         inOrder(actual->obtenerIzquierdo());
         cout << actual->obtenerClave() << endl;
