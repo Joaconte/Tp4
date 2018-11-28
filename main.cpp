@@ -54,9 +54,13 @@ void lecturaArchivo(){
         Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
 
     }
-    archivo.close();
-    Arbol.eliminarElemento("AMS");
-    Arbol.inOrder(Arbol.obtenerRaiz());
+	archivo.close();
+	Arbol.eliminarElemento("AMS");
+	Arbol.inOrder(Arbol.obtenerRaiz());
+	Nodo* buscado = Arbol.buscar("ALC");
+	aeropuerto* aeropuertoBuscado = buscado->obtenerDatos();
+	cout<< aeropuertoBuscado->ciudad <<" " << aeropuertoBuscado->pais<<endl;
+
 }
 
 /*
