@@ -34,6 +34,9 @@ class Abb{
         //post: recorre el arbol de manera inOrder
         void inOrder(Nodo* actual);
 
+	
+	Nodo* buscar(const Tipo clave);
+
         //destructor
         ~Abb();
 
