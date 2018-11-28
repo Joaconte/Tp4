@@ -2,6 +2,7 @@
 #include <fstream>
 #include <unistd.h>
 #include "nodo.h"
+#include "ABB.h"
 using namespace std;
 
 void lecturaArchivo();
@@ -19,7 +20,7 @@ void consultaPais();
 int main(){
 
     lecturaArchivo();
-    menu();
+    //menu();
 
 }
 
@@ -29,8 +30,10 @@ void lecturaArchivo(){
     string datoString, clave;
     float datoFloat;
     int datoInt;
+    Nodo *ptrNodo;
     aeropuerto *ptrAeropuerto, aeropuerto;
     ptrAeropuerto = &aeropuerto;
+    Abb Arbol;
     while (archivo >> clave){
 
         archivo >> datoString;
@@ -48,14 +51,17 @@ void lecturaArchivo(){
         archivo >> datoInt;
         ptrAeropuerto->destinosInternacionales = datoInt;
         Nodo nodo(clave, ptrAeropuerto);
+        ptrNodo= &nodo;
+        Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
+
     }
     archivo.close();
-
+    Arbol.inOrder(Arbol.obtenerRaiz());
 }
 
 
 
-void menu(){
+/* void menu(){
 
     char i = '1';
     while (i != '0'){
@@ -118,3 +124,4 @@ void opcionesConsulta(char i){
         }
         cout<< endl;
     }
+*/
