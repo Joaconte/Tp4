@@ -100,6 +100,22 @@ void Abb::inOrder(Nodo* actual){
     }
 }
 
+Nodo* Abb::buscar(const Tipo clave) {
+
+    Nodo* actual = raiz;
+
+    while(actual != 0) {
+        if(clave == actual->obtenerClave())
+            return actual;
+        else if(clave > actual->obtenerClave())
+                actual = actual->obtenerDerecho();
+            else
+                actual = actual->obtenerIzquierdo();
+    }
+
+    return 0;
+}
+
 Abb::~Abb(){
     delete raiz;
 }
