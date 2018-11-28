@@ -18,17 +18,23 @@ Nodo* Abb::obtenerRaiz() {
 
 void Abb::agregarElemento(Nodo* aeropuerto, Nodo* actual){
 
-    if (actual==0)
-        actual=aeropuerto;
+    if (raiz==0)
+        raiz= aeropuerto;
     else if (actual==0){
         actual= aeropuerto;
         }
     else{
-        if (aeropuerto->obtenerClave()>actual->obtenerClave()){
-            agregarElemento(aeropuerto, actual->obtenerIzquierdo());
+        if (aeropuerto->obtenerClave()<actual->obtenerClave()){
+            if (actual->obtenerIzquierdo()==0)
+                actual->asignarIzquierdo(aeropuerto);
+            else
+                agregarElemento(aeropuerto, actual->obtenerIzquierdo());
         }
         else{
-            agregarElemento(aeropuerto, actual->obtenerDerecho());
+            if (actual->obtenerDerecho()==0)
+                actual->asignarDerecho(aeropuerto);
+            else
+                agregarElemento(aeropuerto, actual->obtenerDerecho());
         }
     }
 }

@@ -31,11 +31,11 @@ void lecturaArchivo(){
     float datoFloat;
     int datoInt;
     Nodo *ptrNodo;
-    aeropuerto *ptrAeropuerto, aeropuerto;
-    ptrAeropuerto = &aeropuerto;
+    aeropuerto *ptrAeropuerto;
     Abb Arbol;
     while (archivo >> clave){
 
+        ptrAeropuerto= new aeropuerto();
         archivo >> datoString;
         ptrAeropuerto->nombre = datoString;
         archivo >> datoString;
@@ -50,8 +50,7 @@ void lecturaArchivo(){
         ptrAeropuerto->destinosNacionales = datoInt;
         archivo >> datoInt;
         ptrAeropuerto->destinosInternacionales = datoInt;
-        Nodo nodo(clave, ptrAeropuerto);
-        ptrNodo= &nodo;
+        ptrNodo= new Nodo(clave, ptrAeropuerto);
         Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
 
     }
