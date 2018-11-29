@@ -1,30 +1,34 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <unistd.h>
-#include "nodo.h"
+#include "Nodo.h"
 #include "ABB.h"
 using namespace std;
 
-void lecturaArchivo();
-void menu();
-void opciones(char i);
+void lecturaArchivo(Abb *ptrArbol);
+void menu(Abb* ptrArbol);
+void opciones(char i,Abb* ptrArbol);
 void menuConsulta();
 void opcionesConsulta(char i);
-void darDeAlta();
-void darDeBaja();
-void consultaCodigo();
+void darDeAlta(Abb *ptrArbol);
+void darDeBaja(Abb *ptrArbol);
+void consultaCodigo(Abb *ptrArbol);
 void consultaNombre();
 void consultaCiudad();
 void consultaPais();
 
 int main(){
+    Abb *ptrArbol, arbol;
+    ptrArbol=&arbol;
+    lecturaArchivo(ptrArbol);
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz());
+	menu(ptrArbol);
 
-    lecturaArchivo();
-    //menu();
 
 }
 
-void lecturaArchivo(){
+void lecturaArchivo(Abb *ptrArbol){
     ifstream archivo;
     archivo.open("aeropuertos.txt");
     string datoString, clave;
@@ -32,7 +36,6 @@ void lecturaArchivo(){
     int datoInt;
     Nodo *ptrNodo;
     aeropuerto *ptrAeropuerto;
-    Abb Arbol;
     while (archivo >> clave){
 
         ptrAeropuerto= new aeropuerto();
@@ -51,22 +54,17 @@ void lecturaArchivo(){
         archivo >> datoInt;
         ptrAeropuerto->destinosInternacionales = datoInt;
         ptrNodo= new Nodo(clave, ptrAeropuerto);
-        Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
+        ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
 
     }
 	archivo.close();
-	Arbol.eliminarElemento("AMS");
-	Arbol.inOrder(Arbol.obtenerRaiz());
-	Nodo* buscado = Arbol.buscar("ALC");
-	aeropuerto* aeropuertoBuscado = buscado->obtenerDatos();
-	cout<< aeropuertoBuscado->ciudad <<" " << aeropuertoBuscado->pais<<endl;
 
 }
 
-/*
 
 
-void menu(){
+
+void menu(Abb *ptrArbol){
 
     char i = '1';
     while (i != '0'){
@@ -76,30 +74,31 @@ void menu(){
 		cout << "Ingrese 3 para dar de baja un nuevo aeropuerto." <<endl;
 		cin >> i;
         cin.ignore(1024, '\n');
-		opciones(i);
+		opciones(i, ptrArbol);
 		sleep(2);
     	}
     }
 
 
-void opciones(char i){
+void opciones(char i,Abb *ptrArbol){
 
     switch (i){
         case '0':
             break;
-        case '1': //menuConsulta();
+        case '1': consultaCodigo(ptrArbol);
             break;
-        case '2': darDeAlta();
+        case '2': darDeAlta(ptrArbol);
             break;
-        case '3': darDeBaja();
+        case '3': darDeBaja(ptrArbol);
             break;
         default: cout << "Dato ingresado invalido" << endl;
         }
         cout<< endl;
     }
 
-    void darDeAlta(){
+    void darDeAlta(Abb *ptrArbol){
         string datoString, clave;
+        int datoInt;
         float datoFloat;
         Nodo *ptrNodo;
         aeropuerto *ptrAeropuerto;
@@ -128,15 +127,21 @@ void opciones(char i){
         cin >> datoInt;
         ptrAeropuerto->destinosInternacionales = datoInt;
         ptrNodo= new Nodo(clave, ptrAeropuerto);
-        Arbol.agregarElemento(ptrNodo, Arbol.obtenerRaiz());
+        ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
     }
 
-    void darDeBaja(){
-        Arbol.
+    void darDeBaja(Abb *ptrArbol){
+        Tipo codigo;
+        cout << "Ingrese codigo IATA del aeropuerto que quiere eliminar: ";
+        cin >> codigo;
+        for (unsigned i=0 ; i < codigo.length() ; i++){
+            codigo[i]=toupper(codigo[i]);
+            }
+        ptrArbol->eliminarElemento(codigo);
     }
 
 
-
+/*
     void menuConsulta(){
 
     char i = '1';
@@ -169,3 +174,21 @@ void opcionesConsulta(char i){
         cout<< endl;
     }
 */
+
+void consultaCodigo(Abb *ptrArbol){
+    Tipo codigo;
+    cout << "Ingrese el codigo IATA: ";
+    cin >> codigo;
+     for (unsigned i=0 ; i < codigo.length() ; i++){
+            codigo[i]=toupper(codigo[i]);
+            }
+    if (Nodo* buscado = ptrArbol->buscar(codigo)){
+        aeropuerto* aeropuertoBuscado = buscado->obtenerDatos();
+        cout<< "El codigo ingresado corresponde al aeropuerto de "<<aeropuertoBuscado->ciudad <<", " << aeropuertoBuscado->pais<<endl
+        <<"que tiene una superficie de " << aeropuertoBuscado->superficie <<" km²" <<endl <<aeropuertoBuscado->cantidadTerminales
+        <<" terminales, " << aeropuertoBuscado->destinosNacionales <<" destinos nacionales y " << aeropuertoBuscado->destinosInternacionales <<
+        " internacionales" <<endl;
+        }
+    else
+        cout << "El aeropuerto no esta incluido"<< endl;
+    }
