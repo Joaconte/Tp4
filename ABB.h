@@ -30,12 +30,9 @@ class Abb{
 
         void eliminarElemento(Tipo clave);
 
-        //pre: recibe el nodo actual
-        //post: recorre el arbol de manera inOrder
-        void inOrder(Nodo* actual);
+        void inOrder(Nodo* actual, void (*)(Nodo* actual, Tipo dato), Tipo dato);
 
-	
-	Nodo* buscar(const Tipo clave);
+        Nodo* buscar(const Tipo clave);
 
         //destructor
         ~Abb();

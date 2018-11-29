@@ -1,11 +1,11 @@
 EZE Ministro-Pistarini Ezeiza Argentina 34.75 4 12 46
-LAX Aeropuerto-Internacional-de-los-Angeles Los-Angeles EEUU 14 9 87 69 
+LAX Aeropuerto-Internacional-de-los-Angeles Los-Angeles EEUU 14 9 87 69
 BAQ Ernesto-Cortissoz Barranquilla Colombia 9 2 7 2
 FRA Francfort-del-Meno Frankfurt Alemania 21 12 102 88
+AIK Aeropuerto-Internacional-de-Kansai Osaka Japon 11.53 12 56 42
 LYS Lyon-Saint-Exupery Lyon Francia 10.05 7 40 23
 ALC Alicante-Elche Alicante Espania 11.53 3 8 13
 IEV Kiev-Zhulhany Kiev Ucrania 16.23 10 76 59
 BGW Aeropuerto-Internacional-de-Bagdad Baghdad Iraq 17.21 9 40 67
-OSA Aeropuerto-Internacional-de-Osaka-Osaka Japon 43.23 15 95 76
-AMS Aeropuerto-Internacional-de-Amsterdam-Schiphol Amsterdam Holanda 35 10 67 78
-
+OSA Aeropuerto-Internacional-de-Osaka Osaka Japon 43.23 15 95 76
+AEP Aeroparque-Metropolitano-Jorge-Newbery Buenos-Aires Argentina 17 3 10 38
