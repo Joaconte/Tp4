@@ -49,15 +49,28 @@ class Nodo {
         // post: asigna ese puntero como izquierdo
         void asignarIzquierdo(Nodo* punteroNodo);
 
+        //pre: -
+        //post: asigna izquierdo = 0
+        void asignarIzquierdo();
+
         //pre: recibe un puntero a nodo
         // post: asigna ese puntero como derecho
         void asignarDerecho(Nodo* punteroNodo);
 
-
-        void asignarIzquierdo();
+        //pre: -
+        //post: asigna derecho = 0
         void asignarDerecho();
+
+        //pre: recibe la clave
+        //post: le asigna la clave al nodo
         void asignarClave(Tipo clave);
+
+        //pre: recibe los datos
+        //post: le asigna los datos al nodo
         void asignarDatos(aeropuerto* datos);
+
+        //pre: -
+        //post: devuelve true si el nodo es hoja, false en caso contrario
         bool esHoja();
 
         //destructor

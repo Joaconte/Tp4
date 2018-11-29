@@ -28,14 +28,17 @@ class Abb{
         //post: agrega el aeropuerto en la posicion correspondiente
         void agregarElemento(Nodo* aeropuerto, Nodo* actual);
 
+        //pre: recibe la clave del aeropuerto a eliminar
+        //post: elimina el elemento
         void eliminarElemento(Tipo clave);
 
-        //pre: recibe el nodo actual
-        //post: recorre el arbol de manera inOrder
-        void inOrder(Nodo* actual);
+        //pre: recibe un puntero a un nodo, la funcion y el dato que se busca
+        //post: recorre el arbol inOrder
+        void inOrder(Nodo* actual, void (*)(Nodo* actual, Tipo dato), Tipo dato);
 
-	
-	Nodo* buscar(const Tipo clave);
+        //pre: recibe la clave a buscar
+        //post: si encuentra la clave devuelve el aeropuerto, sino 0
+        Nodo* buscar(const Tipo clave);
 
         //destructor
         ~Abb();
