@@ -91,12 +91,12 @@ void Abb::eliminarElemento(Tipo clave){
     }
 }
 
-void Abb::inOrder(Nodo* actual, void(*funcion)(Nodo* actual, Tipo dato), Tipo dato){
+void Abb::inOrder(Nodo* actual){
 
     if (actual!=0){
-        inOrder(actual->obtenerIzquierdo(), funcion, dato);
-        (*funcion)(actual, dato);
-        inOrder(actual->obtenerDerecho(), funcion, dato);
+        inOrder(actual->obtenerIzquierdo());
+        cout << actual->obtenerClave() << endl;
+        inOrder(actual->obtenerDerecho());
     }
 }
 
@@ -115,8 +115,6 @@ Nodo* Abb::buscar(const Tipo clave) {
 
     return 0;
 }
-
-
 
 Abb::~Abb(){
     delete raiz;

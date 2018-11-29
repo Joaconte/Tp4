@@ -7,34 +7,23 @@
 using namespace std;
 
 void lecturaArchivo(Abb *ptrArbol);
-
 void menu(Abb* ptrArbol);
 void opciones(char i,Abb* ptrArbol);
-
-void menuConsulta(Abb *ptrArbol);
-void opcionesConsulta(char i, Abb *ptrArbol);
-
+void menuConsulta();
+void opcionesConsulta(char i);
 void darDeAlta(Abb *ptrArbol);
 void darDeBaja(Abb *ptrArbol);
 void consultaCodigo(Abb *ptrArbol);
-
-void consultaNombre(Abb *ptrArbol);
-void buscarNombre(Nodo* actual, Tipo dato);
-
-void consultaCiudad(Abb *ptrArbol);
-void buscarCiudad(Nodo* actual, Tipo dato);
-
-void consultaPais(Abb *ptrArbol);
-void buscarPais(Nodo* actual, Tipo dato);
-
-void mostrarDatos(Nodo* nodo);
-
+void consultaNombre();
+void consultaCiudad();
+void consultaPais();
 
 int main(){
     Abb *ptrArbol, arbol;
     ptrArbol=&arbol;
     lecturaArchivo(ptrArbol);
-    menu(ptrArbol);
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz());
+	menu(ptrArbol);
 
 
 }
@@ -91,12 +80,12 @@ void menu(Abb *ptrArbol){
     }
 
 
-void opciones(char i, Abb *ptrArbol){
+void opciones(char i,Abb *ptrArbol){
 
     switch (i){
         case '0':
             break;
-        case '1': menuConsulta(ptrArbol);
+        case '1': consultaCodigo(ptrArbol);
             break;
         case '2': darDeAlta(ptrArbol);
             break;
@@ -152,102 +141,54 @@ void opciones(char i, Abb *ptrArbol){
     }
 
 
-void menuConsulta(Abb *ptrArbol){
+/*
+    void menuConsulta(){
 
     char i = '1';
     while (i != '0'){
-		cout << "Ingrese 1 para consultar por codigo IATA (La consulta mas rapida)." <<endl;
+		cout << "Ingrese 1 para consultar por codigo IATA." <<endl;
 		cout << "Ingrese 2 para consultar por nombre." <<endl;
 		cout << "Ingrese 3 para consultar por ciudad." <<endl;
 		cout << "Ingrese 4 para consultar por pais." <<endl;
 		cin >> i;
         cin.ignore(1024, '\n');
-		opcionesConsulta(i, ptrArbol);
+		opcionesConsulta(i);
 		sleep(2);
     	}
     }
 
 
-void opcionesConsulta(char i, Abb *ptrArbol){
+void opcionesConsulta(char i){
 
     switch (i){
-        case '1': consultaCodigo(ptrArbol);
+        case '1': consultaCodigo();
             break;
-        case '2': consultaNombre(ptrArbol);
+        case '2': consultaNombre();
             break;
-        case '3': consultaCiudad(ptrArbol);
+        case '3': consultaCiudad();
             break;
-        case '4': consultaPais(ptrArbol);
+        case '4': consultaPais();
             break;
         default: cout << "Dato ingresado invalido" << endl;
         }
         cout<< endl;
     }
+*/
 
 void consultaCodigo(Abb *ptrArbol){
     Tipo codigo;
     cout << "Ingrese el codigo IATA: ";
     cin >> codigo;
-    for (unsigned i=0 ; i < codigo.length() ; i++){
-        codigo[i]=toupper(codigo[i]);
-        }
+     for (unsigned i=0 ; i < codigo.length() ; i++){
+            codigo[i]=toupper(codigo[i]);
+            }
     if (Nodo* buscado = ptrArbol->buscar(codigo)){
         aeropuerto* aeropuertoBuscado = buscado->obtenerDatos();
         cout<< "El codigo ingresado corresponde al aeropuerto de "<<aeropuertoBuscado->ciudad <<", " << aeropuertoBuscado->pais<<endl
-        <<"que tiene una superficie de " << aeropuertoBuscado->superficie <<" km^2" <<endl <<aeropuertoBuscado->cantidadTerminales
+        <<"que tiene una superficie de " << aeropuertoBuscado->superficie <<" km²" <<endl <<aeropuertoBuscado->cantidadTerminales
         <<" terminales, " << aeropuertoBuscado->destinosNacionales <<" destinos nacionales y " << aeropuertoBuscado->destinosInternacionales <<
         " internacionales" <<endl;
-    }
+        }
     else
         cout << "El aeropuerto no esta incluido"<< endl;
     }
-
-void consultaNombre(Abb *ptrArbol){
-
-    Tipo nombre;
-    cout << "Ingrese el nombre: ";
-    cin >> nombre;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarNombre, nombre);
-}
-
-void buscarNombre(Nodo* actual, Tipo nombre){
-
-    if(actual->obtenerDatos()->nombre == nombre)
-        mostrarDatos(actual);
-}
-
-void consultaCiudad(Abb *ptrArbol){
-
-    Tipo ciudad;
-    cout << "Ingrese la ciudad: ";
-    cin >> ciudad;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarCiudad, ciudad);
-}
-
-void buscarCiudad(Nodo* actual, Tipo ciudad){
-
-    if(actual->obtenerDatos()->ciudad == ciudad)
-        mostrarDatos(actual);
-}
-
-void consultaPais(Abb *ptrArbol){
-
-    Tipo pais;
-    cout << "Ingrese el pais: ";
-    cin >> pais;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarPais, pais);
-}
-
-void buscarPais(Nodo* actual, Tipo pais){
-
-    if(actual->obtenerDatos()->pais == pais)
-        mostrarDatos(actual);
-}
-
-void mostrarDatos(Nodo* nodo){
-    aeropuerto* aeropuerto = nodo->obtenerDatos();
-    cout<< "Aeropuerto " << aeropuerto->nombre << ", codigo: " <<  nodo->obtenerClave() << ", de "<< aeropuerto->ciudad<<", " << aeropuerto->pais<<endl
-        <<"que tiene una superficie de " << aeropuerto->superficie <<" km^2, con" <<endl <<aeropuerto->cantidadTerminales
-        <<" terminales, " << aeropuerto->destinosNacionales <<" destinos nacionales y " << aeropuerto->destinosInternacionales <<
-        " internacionales" <<endl<<endl;
-}
