@@ -3,7 +3,7 @@ LAX Aeropuerto-Internacional-de-los-Angeles Los-Angeles EEUU 14 9 87 69
 BAQ Ernesto-Cortissoz Barranquilla Colombia 9 2 7 2
 FRA Francfort-del-Meno Frankfurt Alemania 21 12 102 88
 LYS Lyon-Saint-Exupery Lyon Francia 10.05 7 40 23
-ALC Alicante-Elche Alicante España 11.53 3 8 13
+ALC Alicante-Elche Alicante Espania 11.53 3 8 13
 IEV Kiev-Zhulhany Kiev Ucrania 16.23 10 76 59
 BGW Aeropuerto-Internacional-de-Bagdad Baghdad Iraq 17.21 9 40 67
 OSA Aeropuerto-Internacional-de-Osaka-Osaka Japon 43.23 15 95 76
