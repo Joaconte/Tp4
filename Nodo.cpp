@@ -53,8 +53,7 @@ bool Nodo:: esHoja(){
 }
 
 Nodo::~Nodo(){
-    if (datos)
-        delete datos;
+    delete datos;
     if (izquierdo)
         delete izquierdo;
     if (derecho)
