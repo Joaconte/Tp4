@@ -44,7 +44,13 @@ void Abb::eliminarElemento(Tipo clave){
     aeropuerto* ptrAux;
     actual=raiz;
 
-    while(!(actual==0)){
+    if(!(raiz->obtenerIzquierdo()) && !(raiz->obtenerDerecho())){
+        delete raiz;
+        raiz=0;
+        actual=0;
+    }
+
+    while(actual){
         if(clave==actual->obtenerClave()){
             if (actual->esHoja()){
                 if(padre){
@@ -52,6 +58,10 @@ void Abb::eliminarElemento(Tipo clave){
                         padre->asignarDerecho();
                     else if(padre->obtenerIzquierdo()==actual)
                         padre->asignarIzquierdo();
+                }
+                if (actual->obtenerClave()==raiz->obtenerClave()){
+                    delete raiz;
+                    raiz=0;
                 }
                 delete actual;
                 actual=0;
@@ -117,6 +127,8 @@ Nodo* Abb::buscar(const Tipo clave) {
 }
 
 Abb::~Abb(){
-    delete raiz;
-    raiz=0;
+    while(raiz){
+        cout << raiz->obtenerClave()<<endl;
+        eliminarElemento(raiz->obtenerClave());
+    }
 }
