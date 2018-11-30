@@ -1,4 +1,7 @@
 #include "Funciones.h"
+#include <stdlib.h>
+
+bool SE_ENCONTRO = false;
 
 void lecturaArchivo(Abb *ptrArbol){
     ifstream archivo;
@@ -48,8 +51,9 @@ void menu(Abb *ptrArbol){
 		cout << "Ingrese 3 para dar de baja un aeropuerto." <<endl;
 		cin >> i;
         cin.ignore(1024, '\n');
+        system("cls");
 		opciones(i, ptrArbol);
-		sleep(2);
+		//sleep(2);
     	}
     }
 
@@ -67,7 +71,6 @@ void opciones(char i, Abb *ptrArbol){
             break;
         default: cout << "Dato ingresado invalido" << endl;
         }
-        cout<< endl;
     }
 
 void darDeAlta(Abb *ptrArbol){
@@ -116,6 +119,7 @@ void darDeBaja(Abb *ptrArbol){
 
 void menuConsulta(Abb *ptrArbol){
 
+    SE_ENCONTRO = false;
     char i = '1';
     while (i != '0'){
         cout << "Ingrese 0 para volver al menu principal"<<endl;
@@ -125,8 +129,9 @@ void menuConsulta(Abb *ptrArbol){
 		cout << "Ingrese 4 para consultar por pais." <<endl;
 		cin >> i;
         cin.ignore(1024, '\n');
+        system("cls");
 		opcionesConsulta(i, ptrArbol);
-		sleep(2);
+		//sleep(2);
     	}
     }
 
@@ -146,7 +151,8 @@ void opcionesConsulta(char i, Abb *ptrArbol){
             break;
         default: cout << "Dato ingresado invalido" << endl;
         }
-        cout<< endl;
+    if ((i=='2' || i=='3' || i=='4')&& SE_ENCONTRO==false)
+        cout << "No se encontra ese aeropuerto" << endl << endl;
     }
 
 void consultaCodigo(Abb *ptrArbol){
@@ -161,10 +167,10 @@ void consultaCodigo(Abb *ptrArbol){
         cout<< "El codigo ingresado corresponde al aeropuerto de "<<aeropuertoBuscado->ciudad <<", " << aeropuertoBuscado->pais<<endl
         <<"que tiene una superficie de " << aeropuertoBuscado->superficie <<" km^2" <<endl <<aeropuertoBuscado->cantidadTerminales
         <<" terminales, " << aeropuertoBuscado->destinosNacionales <<" destinos nacionales y " << aeropuertoBuscado->destinosInternacionales <<
-        " internacionales" <<endl;
+        " internacionales" << endl << endl;
     }
     else
-        cout << "El aeropuerto no esta incluido"<< endl;
+        cout << "El aeropuerto no esta incluido"<< endl << endl;
     }
 
 void consultaNombre(Abb *ptrArbol){
@@ -184,8 +190,10 @@ void buscarNombre(Nodo* actual, Tipo nombre){
     ptr= &thisNombre;
     thisNombre=actual->obtenerDatos()->nombre;
     datoAMayuscula(ptr);
-    if(thisNombre == nombre)
+    if(thisNombre == nombre){
+        SE_ENCONTRO = true;
         mostrarDatos(actual);
+    }
 }
 
 void consultaCiudad(Abb *ptrArbol){
@@ -205,8 +213,10 @@ void buscarCiudad(Nodo* actual, Tipo ciudad){
     ptr= &thisCiudad;
     thisCiudad=actual->obtenerDatos()->ciudad;
     datoAMayuscula(ptr);
-    if(thisCiudad == ciudad)
+    if(thisCiudad == ciudad){
+        SE_ENCONTRO = true;
         mostrarDatos(actual);
+    }
 }
 
 void consultaPais(Abb *ptrArbol){
@@ -225,8 +235,10 @@ void buscarPais(Nodo* actual, Tipo pais){
     ptr= &thisPais;
     thisPais=actual->obtenerDatos()->pais;
     datoAMayuscula(ptr);
-    if(thisPais== pais)
+    if(thisPais== pais){
+        SE_ENCONTRO = true;
         mostrarDatos(actual);
+    }
 }
 
 void mostrarDatos(Nodo* nodo){
