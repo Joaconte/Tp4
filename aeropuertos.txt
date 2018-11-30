@@ -8,4 +8,4 @@ ALC Alicante-Elche Alicante Espania 11.53 3 8 13
 IEV Kiev-Zhulhany Kiev Ucrania 16.23 10 76 59
 BGW Aeropuerto-Internacional-de-Bagdad Baghdad Iraq 17.21 9 40 67
 OSA Aeropuerto-Internacional-de-Osaka Osaka Japon 43.23 15 95 76
-AEP Aeroparque-Metropolitano-Jorge-Newbery Buenos-Aires Argentina 17 3 10 38
+AEP Aeroparque-Metropolitano-Jorge-Newbery Buenos-Aires Argentina 17 3 10 3

@@ -37,6 +37,7 @@ void lecturaArchivo(Abb *ptrArbol){
 
     }
 	archivo.close();
+	ptrNodo=0, ptrAeropuerto=0;
 
 }
 
@@ -104,6 +105,7 @@ void darDeAlta(Abb *ptrArbol){
     cin >> datoInt;
     ptrAeropuerto->destinosInternacionales = datoInt;
     ptrNodo= new Nodo(clave, ptrAeropuerto);
+    cout << "creati" << &ptrNodo << endl;
     ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
 }
 

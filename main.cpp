@@ -6,4 +6,3 @@ int main(){
     lecturaArchivo(ptrArbol);
     menu(ptrArbol);
 }
-

@@ -116,8 +116,7 @@ Nodo* Abb::buscar(const Tipo clave) {
     return 0;
 }
 
-
-
 Abb::~Abb(){
     delete raiz;
+    raiz=0;
 }
