@@ -3,7 +3,8 @@
 void lecturaArchivo(Abb *ptrArbol){
     ifstream archivo;
     archivo.open("aeropuertos.txt");
-    string datoString, clave;
+    string *ptrDato, datoString, clave;
+    ptrDato = &datoString;
     float datoFloat;
     int datoInt;
     Nodo *ptrNodo;
@@ -12,10 +13,13 @@ void lecturaArchivo(Abb *ptrArbol){
 
         ptrAeropuerto= new aeropuerto();
         archivo >> datoString;
+        limpiarGuiones(ptrDato);
         ptrAeropuerto->nombre = datoString;
         archivo >> datoString;
+        limpiarGuiones(ptrDato);
         ptrAeropuerto->ciudad = datoString;
         archivo >> datoString;
+        limpiarGuiones(ptrDato);
         ptrAeropuerto->pais = datoString;
         archivo >> datoFloat;
         ptrAeropuerto->superficie = datoFloat;
@@ -32,8 +36,6 @@ void lecturaArchivo(Abb *ptrArbol){
 	archivo.close();
 
 }
-
-
 
 
 void menu(Abb *ptrArbol){
@@ -68,49 +70,48 @@ void opciones(char i, Abb *ptrArbol){
         cout<< endl;
     }
 
-    void darDeAlta(Abb *ptrArbol){
-        string datoString, clave;
-        int datoInt;
-        float datoFloat;
-        Nodo *ptrNodo;
-        aeropuerto *ptrAeropuerto;
-        ptrAeropuerto= new aeropuerto();
-        cout << "Ingrese el codigo IATA: ";
-        cin >> clave;
-        cout <<"Ingrese el nombre del aeropuerto: ";
-        cin >> datoString;
-        ptrAeropuerto->nombre = datoString;
-        cout <<"Ingrese el nombre de la ciudad: ";
-        cin >> datoString;
-        ptrAeropuerto->ciudad = datoString;
-        cout <<"Ingrese el del pais: ";
-        cin >> datoString;
-        ptrAeropuerto->pais = datoString;
-        cout <<"Ingrese la superficie: ";
-        cin >> datoFloat;
-        ptrAeropuerto->superficie = datoFloat;
-        cout <<"Ingrese la cantidad de terminales: ";
-        cin >> datoInt;
-        ptrAeropuerto->cantidadTerminales = datoInt;
-        cout <<"Ingrese la cantidad de destinos nacionales: ";
-        cin >>  datoInt;
-        ptrAeropuerto->destinosNacionales = datoInt;
-        cout <<"Ingrese la cantidad de destinos internacionale: ";
-        cin >> datoInt;
-        ptrAeropuerto->destinosInternacionales = datoInt;
-        ptrNodo= new Nodo(clave, ptrAeropuerto);
-        ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
-    }
+void darDeAlta(Abb *ptrArbol){
+    string datoString, clave;
+    int datoInt;
+    float datoFloat;
+    Nodo *ptrNodo;
+    aeropuerto *ptrAeropuerto;
+    ptrAeropuerto= new aeropuerto();
+    cout << "Ingrese el codigo IATA: ";
+    cin >> clave;
+    cout <<"Ingrese el nombre del aeropuerto: ";
+    cin >> datoString;
+    ptrAeropuerto->nombre = datoString;
+    cout <<"Ingrese el nombre de la ciudad: ";
+    cin >> datoString;
+    ptrAeropuerto->ciudad = datoString;
+    cout <<"Ingrese el del pais: ";
+    cin >> datoString;
+    ptrAeropuerto->pais = datoString;
+    cout <<"Ingrese la superficie: ";
+    cin >> datoFloat;
+    ptrAeropuerto->superficie = datoFloat;
+    cout <<"Ingrese la cantidad de terminales: ";
+    cin >> datoInt;
+    ptrAeropuerto->cantidadTerminales = datoInt;
+    cout <<"Ingrese la cantidad de destinos nacionales: ";
+    cin >>  datoInt;
+    ptrAeropuerto->destinosNacionales = datoInt;
+    cout <<"Ingrese la cantidad de destinos internacionale: ";
+    cin >> datoInt;
+    ptrAeropuerto->destinosInternacionales = datoInt;
+    ptrNodo= new Nodo(clave, ptrAeropuerto);
+    ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
+}
 
-    void darDeBaja(Abb *ptrArbol){
-        Tipo codigo;
-        cout << "Ingrese codigo IATA del aeropuerto que quiere eliminar: ";
-        cin >> codigo;
-        for (unsigned i=0 ; i < codigo.length() ; i++){
-            codigo[i]=toupper(codigo[i]);
-            }
-        ptrArbol->eliminarElemento(codigo);
-    }
+void darDeBaja(Abb *ptrArbol){
+    Tipo *ptrCodigo, codigo;
+    ptrCodigo = &codigo;
+    cout << "Ingrese codigo IATA del aeropuerto que quiere eliminar: ";
+    cin >> codigo;
+    datoAMayuscula(ptrCodigo);
+    ptrArbol->eliminarElemento(codigo);
+}
 
 
 void menuConsulta(Abb *ptrArbol){
@@ -149,12 +150,12 @@ void opcionesConsulta(char i, Abb *ptrArbol){
     }
 
 void consultaCodigo(Abb *ptrArbol){
-    Tipo codigo;
+
+    Tipo *ptr, codigo;
+    ptr= &codigo;
     cout << "Ingrese el codigo IATA: ";
     cin >> codigo;
-    for (unsigned i=0 ; i < codigo.length() ; i++){
-        codigo[i]=toupper(codigo[i]);
-        }
+    datoAMayuscula(ptr);
     if (Nodo* buscado = ptrArbol->buscar(codigo)){
         aeropuerto* aeropuertoBuscado = buscado->obtenerDatos();
         cout<< "El codigo ingresado corresponde al aeropuerto de "<<aeropuertoBuscado->ciudad <<", " << aeropuertoBuscado->pais<<endl
@@ -168,50 +169,85 @@ void consultaCodigo(Abb *ptrArbol){
 
 void consultaNombre(Abb *ptrArbol){
 
-    Tipo nombre;
+    Tipo *ptr, s, dato;
+    ptr= &dato;
     cout << "Ingrese el nombre: ";
-    cin >> nombre;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarNombre, nombre);
+    cin.getline((char*)s.c_str(), 256);
+    dato= s.c_str();
+    datoAMayuscula(ptr);
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarNombre, dato);
 }
 
 void buscarNombre(Nodo* actual, Tipo nombre){
 
-    if(actual->obtenerDatos()->nombre == nombre)
+    Tipo *ptr, thisNombre;
+    ptr= &thisNombre;
+    thisNombre=actual->obtenerDatos()->nombre;
+    datoAMayuscula(ptr);
+    if(thisNombre == nombre)
         mostrarDatos(actual);
 }
 
 void consultaCiudad(Abb *ptrArbol){
 
-    Tipo ciudad;
+    Tipo *ptr, s, dato;
+    ptr= &dato;
     cout << "Ingrese la ciudad: ";
-    cin >> ciudad;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarCiudad, ciudad);
+    cin.getline((char*)s.c_str(), 256);
+    dato= s.c_str();
+    datoAMayuscula(ptr);
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarCiudad, dato);
 }
 
 void buscarCiudad(Nodo* actual, Tipo ciudad){
 
-    if(actual->obtenerDatos()->ciudad == ciudad)
+    Tipo *ptr, thisCiudad;
+    ptr= &thisCiudad;
+    thisCiudad=actual->obtenerDatos()->ciudad;
+    datoAMayuscula(ptr);
+    if(thisCiudad == ciudad)
         mostrarDatos(actual);
 }
 
 void consultaPais(Abb *ptrArbol){
-
-    Tipo pais;
+    Tipo *ptr, s, dato;
+    ptr= &dato;
     cout << "Ingrese el pais: ";
-    cin >> pais;
-    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarPais, pais);
+    cin.getline((char*)s.c_str(), 256);
+    dato= s.c_str();
+    datoAMayuscula(ptr);
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), buscarPais, dato);
 }
 
 void buscarPais(Nodo* actual, Tipo pais){
 
-    if(actual->obtenerDatos()->pais == pais)
+    Tipo *ptr, thisPais;
+    ptr= &thisPais;
+    thisPais=actual->obtenerDatos()->pais;
+    datoAMayuscula(ptr);
+    if(thisPais== pais)
         mostrarDatos(actual);
 }
 
 void mostrarDatos(Nodo* nodo){
     aeropuerto* aeropuerto = nodo->obtenerDatos();
-    cout<< "Aeropuerto " << aeropuerto->nombre << ", codigo: " <<  nodo->obtenerClave() << ", de "<< aeropuerto->ciudad<<", " << aeropuerto->pais<<endl
+    cout << aeropuerto->nombre << ", codigo: " <<  nodo->obtenerClave() << ", de "<< aeropuerto->ciudad<<", " << aeropuerto->pais<<endl
         <<"que tiene una superficie de " << aeropuerto->superficie <<" km^2, con" <<endl <<aeropuerto->cantidadTerminales
         <<" terminales, " << aeropuerto->destinosNacionales <<" destinos nacionales y " << aeropuerto->destinosInternacionales <<
         " internacionales" <<endl<<endl;
 }
+
+void limpiarGuiones(string* dato){
+    for(unsigned i=0; i<dato->length(); i++){
+        if (dato[0][i]=='-')
+            dato[0][i]=' ';
+    }
+}
+
+void datoAMayuscula(string* dato){
+
+    for (unsigned i=0 ; i < dato[0].length() ; i++){
+        dato[0][i]=toupper(dato[0][i]);
+    }
+}
+

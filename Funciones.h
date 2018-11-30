@@ -70,7 +70,12 @@ void buscarPais(Nodo* actual, Tipo dato);
 //post: imprime la informacion del aeropuerto
 void mostrarDatos(Nodo* nodo);
 
+//pre: recibe un puntero a string
+//post: quita los guiones del string
+void limpiarGuiones(string* dato);
 
-
+//pre: recibe un puntero a string
+//post: pone a mayusculas todos los caracteres
+void datoAMayuscula(string* dato);
 
 #endif // FUNCIONES_H_INCLUDED
