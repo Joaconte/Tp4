@@ -5,4 +5,5 @@ int main(){
     ptrArbol=&arbol;
     lecturaArchivo(ptrArbol);
     menu(ptrArbol);
+
 }

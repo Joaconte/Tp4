@@ -50,6 +50,7 @@ void menu(Abb *ptrArbol){
 		cout << "Ingrese 1 para consultar por un aeropuerto." <<endl;
 		cout << "Ingrese 2 para dar de alta un nuevo aeropuerto." <<endl;
 		cout << "Ingrese 3 para dar de baja un aeropuerto." <<endl;
+		cout << "Ingrese 4 para mostrar el listado de aeropuertos." <<endl;
 		cin >> i;
         cin.ignore(1024, '\n');
         system("cls");
@@ -69,6 +70,8 @@ void opciones(char i, Abb *ptrArbol){
         case '2': darDeAlta(ptrArbol);
             break;
         case '3': darDeBaja(ptrArbol);
+            break;
+        case '4': mostrarListado(ptrArbol);
             break;
         default: cout << "Dato ingresado invalido" << endl;
         }
@@ -101,11 +104,10 @@ void darDeAlta(Abb *ptrArbol){
     cout <<"Ingrese la cantidad de destinos nacionales: ";
     cin >>  datoInt;
     ptrAeropuerto->destinosNacionales = datoInt;
-    cout <<"Ingrese la cantidad de destinos internacionale: ";
+    cout <<"Ingrese la cantidad de destinos internacionales: ";
     cin >> datoInt;
     ptrAeropuerto->destinosInternacionales = datoInt;
     ptrNodo= new Nodo(clave, ptrAeropuerto);
-    cout << "creati" << &ptrNodo << endl;
     ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
 }
 
@@ -116,6 +118,7 @@ void darDeBaja(Abb *ptrArbol){
     cin >> codigo;
     datoAMayuscula(ptrCodigo);
     ptrArbol->eliminarElemento(codigo);
+
 }
 
 
@@ -154,7 +157,7 @@ void opcionesConsulta(char i, Abb *ptrArbol){
         default: cout << "Dato ingresado invalido" << endl;
         }
     if ((i=='2' || i=='3' || i=='4')&& SE_ENCONTRO==false)
-        cout << "No se encontra ese aeropuerto" << endl << endl;
+        cout << "No se encontro ese aeropuerto" << endl << endl;
     }
 
 void consultaCodigo(Abb *ptrArbol){
@@ -263,5 +266,14 @@ void datoAMayuscula(string* dato){
     for (unsigned i=0 ; i < dato[0].length() ; i++){
         dato[0][i]=toupper(dato[0][i]);
     }
+}
+
+void mostrarListado(Abb *ptrArbol){
+    Tipo dato;
+    ptrArbol->inOrder(ptrArbol->obtenerRaiz(), mostrarCodigo, dato);
+}
+
+void mostrarCodigo(Nodo* actual,Tipo dato){
+cout << actual->obtenerClave() <<endl;
 }
 

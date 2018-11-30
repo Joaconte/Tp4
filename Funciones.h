@@ -70,6 +70,15 @@ void buscarPais(Nodo* actual, Tipo dato);
 //post: imprime la informacion del aeropuerto
 void mostrarDatos(Nodo* nodo);
 
+//pre: recibe un puntero a nodo y un dato
+//post: muestra el codigo del nodo
+void mostrarCodigo(Nodo* actual,Tipo dato);
+
+//pre: recibe un puntero al arbpl
+//post: muestra un listado de los codigos de aeropuertos
+void mostrarListado(Abb *ptrArbol);
+
+
 //pre: recibe un puntero a string
 //post: quita los guiones del string
 void limpiarGuiones(string* dato);
@@ -77,5 +86,6 @@ void limpiarGuiones(string* dato);
 //pre: recibe un puntero a string
 //post: pone a mayusculas todos los caracteres
 void datoAMayuscula(string* dato);
+
 
 #endif // FUNCIONES_H_INCLUDED

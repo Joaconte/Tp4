@@ -128,7 +128,7 @@ Nodo* Abb::buscar(const Tipo clave) {
 
 Abb::~Abb(){
     while(raiz){
-        cout << raiz->obtenerClave()<<endl;
         eliminarElemento(raiz->obtenerClave());
     }
 }
+
