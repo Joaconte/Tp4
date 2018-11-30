@@ -30,7 +30,7 @@ class Abb{
 
         //pre: recibe la clave del aeropuerto a eliminar
         //post: elimina el elemento
-        void eliminarElemento(Tipo clave);
+        bool eliminarElemento(Tipo clave);
 
         //pre: recibe un puntero a un nodo, la funcion y el dato que se busca
         //post: recorre el arbol inOrder

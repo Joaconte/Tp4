@@ -55,7 +55,6 @@ void menu(Abb *ptrArbol){
         cin.ignore(1024, '\n');
         system("cls");
 		opciones(i, ptrArbol);
-		//sleep(2);
     	}
     }
 
@@ -92,7 +91,7 @@ void darDeAlta(Abb *ptrArbol){
     cout <<"Ingrese el nombre de la ciudad: ";
     cin >> datoString;
     ptrAeropuerto->ciudad = datoString;
-    cout <<"Ingrese el del pais: ";
+    cout <<"Ingrese el nombre del pais: ";
     cin >> datoString;
     ptrAeropuerto->pais = datoString;
     cout <<"Ingrese la superficie: ";
@@ -109,6 +108,8 @@ void darDeAlta(Abb *ptrArbol){
     ptrAeropuerto->destinosInternacionales = datoInt;
     ptrNodo= new Nodo(clave, ptrAeropuerto);
     ptrArbol->agregarElemento(ptrNodo, ptrArbol->obtenerRaiz());
+    system("cls");
+    cout << "El aeropuerto se ha agregado correctamente" <<endl;
 }
 
 void darDeBaja(Abb *ptrArbol){
@@ -117,8 +118,14 @@ void darDeBaja(Abb *ptrArbol){
     cout << "Ingrese codigo IATA del aeropuerto que quiere eliminar: ";
     cin >> codigo;
     datoAMayuscula(ptrCodigo);
-    ptrArbol->eliminarElemento(codigo);
-
+    if(!(ptrArbol->obtenerRaiz()))
+        cout << "No quedan mas aeropuertos :(" <<endl;
+    else{
+        if (ptrArbol->eliminarElemento(codigo))
+            cout << "El aeropuerto se ha eliminado correctamente" << endl;
+        else
+            cout << "No se encontro tal aeropuerto" <<endl;
+    }
 }
 
 
@@ -136,7 +143,6 @@ void menuConsulta(Abb *ptrArbol){
         cin.ignore(1024, '\n');
         system("cls");
 		opcionesConsulta(i, ptrArbol);
-		//sleep(2);
     	}
     }
 
